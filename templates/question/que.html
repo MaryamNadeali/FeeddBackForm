@@ -79,7 +79,7 @@
 
                                                     {% else %}
                                                         <div class="form-group mb-2 col-12">
-                                                            <textarea placeholder="Type here..." name="Message"
+                                                            <textarea placeholder="Type here..." name="txt_ans"
                                                                 class="form-control header_text_area add_header" cols="30" rows="3">
             
                                                             </textarea>
@@ -228,6 +228,25 @@
 
 
                                         </form>
+
+                                        <script type="text/javascript">
+                                            var r = "";
+                                            function favoriteCities() {
+                                                var input = document.getElementsByName('favoriteCities[]');
+                                     
+                                                for (var i = 0; i < input.length; i++) {
+                                                    var a = input[i]; var uniqueNumber=i+1;
+                                                    r = r + "City #" + uniqueNumber + " is " + a.value + ("<br>");
+                                                }
+                                                
+                                                document.getElementById("output").innerHTML = r;
+                                                
+                                                //while (4 = input.length) {
+                                                //print (output)
+                                                //}
+                                            }
+                                            
+                                        </script>
                                     </section>
 
 
@@ -243,8 +262,5 @@
             </section>
         </section>
     </main>
-
-
 </body>
-
 </html>

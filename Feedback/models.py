@@ -65,32 +65,22 @@ class TxtQuestion(models.Model):
 class TxtAnswer(models.Model):
     
     txt_ans =  models.TextField(verbose_name='text_answer')
-    writer = models.ForeignKey(User, verbose_name='writer', on_delete=models.CASCADE, related_name='txtanswertouser')
-    que = models.OneToOneField(TxtQuestion, verbose_name='question', on_delete=models.CASCADE, related_name='txtanswertoquestion')
+    # writer = models.ForeignKey(User, verbose_name='writer', on_delete=models.CASCADE, related_name='txtanswertouser')
+    que = models.ForeignKey(MulQuestion, verbose_name='question', on_delete=models.CASCADE)
     created_at = models.DateTimeField(verbose_name='creation_date', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='updation_date', auto_now=True)
     
     def __str__(self):
-        return self.que.txt_ans
+        return self.que.title
         
     class Meta:
         db_table = 'txt_ans'
-        
-# class AnswerManager(models.Manager):
-#     def get_queryset(self):
-#         questions = MulQuestion.objects.all()
-#         for question in questions:
-#             if question.type == 'multianswer':
-#                 print('question',question)
-#                 # multiple_anses = MultipleAnswer.objects.all().filter(que=question)
-#         return MultipleAnswer.objects.all().filter(que=question)
         
 class Answer(models.Model):
     # user = models.ForeignKey(User, verbose_name='user', on_delete=models.CASCADE)
     que = models.ForeignKey(MulQuestion, verbose_name='que', on_delete=models.CASCADE)
     ans = models.ForeignKey(MultipleAnswer, verbose_name='ans', on_delete=models.CASCADE)
     bool_ans = models.BooleanField(default=False)
-    txt_ans =  models.TextField(verbose_name='text_answer')
     created_at = models.DateTimeField(verbose_name='creation_date', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='updation_date', auto_now=True)
     

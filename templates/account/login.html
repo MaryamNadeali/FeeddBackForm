@@ -1,0 +1,7 @@
+{% load crispy_forms_tags %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ login_form | crispy }}
+    <input type="submit" value="ورود" class='btn btn-primary'>
+</form>

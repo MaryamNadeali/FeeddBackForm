@@ -3,11 +3,31 @@ from socket import fromshare
 from tabnanny import verbose
 from xmlrpc.client import boolean
 from django import forms
+from django.contrib.auth.models import User
 from .models import MulQuestion, TxtQuestion, MultipleAnswer, TxtAnswer, Answer
 
-class FeedbackForm(forms.Form):
-    bool_ans = forms.BooleanField()
-    txt_ans =  forms.CharField(widget=forms.TextInput)
+class RegisterForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name','last_name','email','username','password']
+        
+class LoginForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields=['username', 'password']
+
+class BooleanForm(forms.ModelForm):
+    # bool_ans = forms.BooleanField()
+    # txt_ans =  forms.CharField(widget=forms.TextInput)
+    class Meta:
+        model = Answer
+        fields = ['bool_ans']
+        
+class TextForm(forms.ModelForm):
+    class Meta:
+        model = TxtAnswer
+        fields = ['txt_ans']
     
     # def save(self, *args, **kwargs):
     #     print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')

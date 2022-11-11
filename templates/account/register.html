@@ -1,0 +1,10 @@
+{% load crispy_forms_tags %}
+
+<form enctype="multipart/form-data" action="" method="post">
+    {% csrf_token %}
+    {{ register_form | crispy }}
+    <br>
+    <div class='container-information-btn'>
+        <button class='information' >ثبت اطلاعات</button>
+    </div>
+</form>
